@@ -25,5 +25,28 @@ public:
 
 [Problem_Link :-https://leetcode.com/problems/sort-colors/
 Solution :-
-
+class Solution {
+public:
+    void sortColors(vector<int>& a) {
+        int n = a.size();
+       int low=0,hi=n-1,mid=0;
+        while(mid<=hi){
+            if(a[mid]==0){
+             swap(a[mid],a[low]);
+             low++;
+             mid++;
+            }
+           else if(a[mid]==2){
+                swap(a[mid],a[hi]);
+                hi--;
+            }
+           else  if(a[mid]==1){
+                mid++;
+            }
+       }
+    }
+};
 ]
+
+
+/*****************************************************************************/
