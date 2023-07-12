@@ -50,3 +50,188 @@ public:
 
 
 /*****************************************************************************/
+
+
+[Problem_Link :- https://leetcode.com/problems/sort-colors/
+Solution :-
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if(nums.size()==0){
+            return 0;
+        }
+        int i=0;
+        for(int j=1;j<nums.size();j++){
+            if(nums[i]!=nums[j]){
+                i++;
+                nums[i]=nums[j];
+            }
+        }
+        return i+1;
+    }
+};
+]
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :-https://leetcode.com/problems/set-matrix-zeroes/
+Solution :-
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& arr) {
+
+        int r = arr.size();
+        int c = arr[0].size();
+
+        vector<int> xr,yc;
+
+        for(int i=0;i<r;i++)
+        {
+            for(int j =0;j<c;j++)
+            {
+                if(arr[i][j] == 0)
+                {
+                    xr.push_back(i);
+                    yc.push_back(j);
+                }
+            }
+        }
+        for(auto row : xr)
+        {
+            for(int col = 0;col<c;col++)
+            arr[row][col] = 0;
+        }
+
+        for(auto col : yc)
+        {
+            for(int row = 0;row<r;row++)
+            arr[row][col] = 0;
+        }
+    }
+};]
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :- https://leetcode.com/problems/move-zeroes/
+Solution :-
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        int low = 0, high = 1;
+        while(low < n && high < n){
+            if(nums[low] == 0 && nums[high] != 0){
+                swap(nums[low], nums[high]);
+                low ++;
+                high ++;
+            }else if(nums[low] == 0 && nums[high] == 0){
+                swap(nums[low], nums[high]);
+                high ++;
+            }else{
+                low ++;
+                high ++;
+            }
+        }
+    }
+};]
+
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :- https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+Solution :-
+class Solution {
+public:
+    int maxProfit(vector<int>& a) {
+        int n=a.size();
+        int minm = 100000;
+        int Profit_Achieve = 0;
+        for(int i = 0; i<n; i++){
+            minm = min(a[i], minm);
+            Profit_Achieve = max(Profit_Achieve, a[i] - minm);
+        }
+        return Profit_Achieve;
+    }
+};
+]
+
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :- https://practice.geeksforgeeks.org/problems/chocolate-distribution-problem3825/1
+Solution :-
+class Solution{
+    public:
+    long long findMinDiff(vector<long long> a, long long n, long long m){
+         sort(a.begin(), a.end());
+         long long ans = INT_MAX;
+         int low = 0, high = m - 1;
+         while(high < a.size()){
+             ans = min(ans, a[high] - a[low]);
+             low ++;
+             high ++;
+         }
+         return ans;
+    }
+};]
+
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :- https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+Solution :-
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        if(n == 1){
+            return 0;
+        }
+        int low = 1;
+        int start_num = prices[0];
+        int ans = 0;
+        int checker = prices[0];
+        int maxm = 0;
+        while(low < n){
+           if(prices[low] > checker){
+               cout<<start_num<<endl;
+               maxm = max(maxm, prices[low] - start_num);
+               checker = prices[low];
+               low ++;
+           }else{
+              ans += maxm;
+              maxm = 0;
+              checker = prices[low];
+              start_num = prices[low];
+              low ++;
+           }
+        }
+        if(maxm > 0){
+            ans += maxm;
+        }
+        if(ans == 0 && prices[n-1] > prices[0]){
+            return prices[n-1] - prices[0];
+        }
+        return ans;
+    }
+};]
+
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :- https://leetcode.com/problems/subarray-sums-divisible-by-k/
+Solution :-
+
+]
