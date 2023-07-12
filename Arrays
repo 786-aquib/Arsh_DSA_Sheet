@@ -1,0 +1,29 @@
+[Problem_Link :- https://leetcode.com/problems/find-the-duplicate-number/
+Solution :-   { Linked list two pointer Approach traversing through index of the element }
+class Solution {
+public:
+    int findDuplicate(vector<int>& a) {
+      int slow = a[0];
+      int fast = a[0];
+      do{
+           slow=a[slow];
+           fast=a[a[fast]];
+        }
+        while(slow != fast);
+      fast = a[0];
+      while(slow != fast){
+          slow = a[slow];
+          fast = a[fast];
+      }
+      return slow;
+    }
+};
+]
+/*****************************************************************************/
+
+
+
+[Problem_Link :-https://leetcode.com/problems/sort-colors/
+Solution :-
+
+]
