@@ -233,5 +233,67 @@ public:
 
 [Problem_Link :- https://leetcode.com/problems/subarray-sums-divisible-by-k/
 Solution :-
-
+class Solution {
+public:
+    int subarraysDivByK(vector<int>& nums, int k) {
+        int count = 0, sum = 0;
+        unordered_map<int, int> m{{0, 1}};
+        for(int num : nums) {
+            sum = (sum + num) % k;
+            if(sum < 0) sum += k;
+            count += m[sum]++;
+        }
+        return count;
+    }
+};
 ]
+
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :- https://leetcode.com/problems/find-all-duplicates-in-an-array/
+Solution :-
+class Solution {
+public:
+    vector<int> findDuplicates(vector<int>& nums) {
+        vector<int> ans;
+        for(int i=0;i<nums.size();i++){
+            int a = abs(nums[i]) - 1;
+            nums[a] = (-1*nums[a]);
+            if(nums[a]>0){
+                ans.push_back(a+1);
+            }
+        }
+        return ans;
+    }
+};
+]
+
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :- https://leetcode.com/problems/container-with-most-water/
+Solution :-
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int n = height.size();
+        int low = 0, end = n-1;
+        int ans = 0;
+        while(low < end){
+            int min_height = min(height[low], height[end]);
+            int dist = (end - low);
+            ans = max(ans, min_height * dist);
+            if(height[low] < height[end]){
+                low ++;
+            }else{
+                end --;
+            }
+        }
+        return ans;
+    }
+};]
