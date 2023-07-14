@@ -326,6 +326,74 @@ public:
 /*****************************************************************************/
 
 
-[Problem_Link :- 
+[Problem_Link :-https://leetcode.com/problems/3sum/
 Solution :-
-]
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& a) {
+       vector<vector<int>> ans;
+       set<vector<int>> s;
+       int n = a.size();
+        sort(a.begin(), a.end());
+         for(int i = 0; i<n; i++){
+             int first_num = a[i];
+             int low = i + 1, high = n - 1;
+             while(low < high){
+                 int sum = first_num + a[low] + a[high];
+                 if(sum == 0){
+                     s.insert({first_num, a[low], a[high]});
+                     low ++;
+                     high --;
+                 }else if(sum > 0){
+                     high --;
+                 }else{
+                     low ++;
+                 }
+             } 
+         }
+         for(auto triplets : s)
+            ans.push_back(triplets);
+
+         return ans;
+    }
+};]
+
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :-https://leetcode.com/problems/4sum/
+Solution :-
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& a, int target) {
+        int n = a.size();
+        set<vector<int>> st;
+        vector<vector<int>> ans;
+        sort(a.begin(), a.end());
+        for(int i = 0; i<n; i++){
+            int first_num = a[i];
+            for(int j = i+1; j<n; j++){
+                int second_num = a[j];
+                int low = j + 1, high = n - 1;
+                while(low < high){
+                   long long  sum = (long long)first_num + (long long)second_num + (long long)a[low] + (long long)a[high];
+                    if(sum == target){
+                        st.insert({first_num, second_num, a[low], a[high]});
+                        low ++;
+                        high --;
+                    }else if(sum > target){
+                        high --;
+                    }else{
+                        low ++;
+                    }
+                }
+            }
+        }
+        for(auto quadraplet : st){
+            ans.push_back(quadraplet);
+        }
+        return ans;
+    }
+};]
