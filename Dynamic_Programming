@@ -1,0 +1,83 @@
+/*****************************************************************************/
+
+
+[Problem_Link :- https://leetcode.com/problems/climbing-stairs/
+Solution :-
+class Solution {
+public:
+   int dp[46] = {0};
+   void precompute(){
+       dp[0] = 0;
+       dp[1] = 1;
+       dp[2] = 2;
+       for(int i = 3; i<=45; i++){
+           dp[i]  = dp[i - 1] + dp[i - 2];
+       }
+
+   }
+    int climbStairs(int n) {
+        precompute();
+        return dp[n];
+
+    }
+};]
+
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :- https://leetcode.com/problems/maximum-product-subarray/
+Solution :-
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int maxi = INT_MIN;
+        int pref = 1, suff = 1;
+        for(int i=0;i<nums.size();i++){
+          if(pref == 0) pref = 1;
+          if(suff == 0)suff = 1;
+          pref *= nums[i];
+          suff *= nums[nums.size() - i - 1];
+          maxi = max(maxi, max(pref, suff));
+        }
+        return maxi;
+    }
+};
+]
+
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :- https://leetcode.com/problems/ones-and-zeroes/
+Solution :-
+class Solution {
+public:
+    int findMaxForm(vector<string>& strs, int m, int n) {
+        int sz = strs.size();
+       vector<vector<vector<int>>> dp(sz + 1,vector<vector<int>>(m + 1, vector<int>(n + 1)));
+       for(int i = 1; i<=sz; i++){
+           int countZeroes = count(strs[i-1].begin(), strs[i-1].end(), '0');
+           int countOnes = strs[i - 1].size() - countZeroes;
+           for(int j = 0; j<=m; j++){
+              for(int k = 0; k<=n; k++){
+                  if(j - countZeroes >=0 && k - countOnes >= 0)
+                  dp[i][j][k] = max(1 + dp[i-1][j - countZeroes][k - countOnes], dp[i-1][j][k]);
+                  else
+                  dp[i][j][k] = dp[i-1][j][k];
+             }
+           }
+       }
+    return dp[sz][m][n];
+    }
+};]
+
+
+
+/*****************************************************************************/
+
+
+[Problem_Link :- https://leetcode.com/problems/counting-bits/
+Solution :-
